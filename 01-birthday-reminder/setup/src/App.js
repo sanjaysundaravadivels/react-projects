@@ -19,17 +19,15 @@ function App() {
   };
 
   return (
-    <>
-      <section className="container">
-        <h3>Birthday Remainder</h3>
-        <List people={people} />
-        {shows ? (
-          <button onClick={() => showall()}>Show all</button>
-        ) : (
-          <button onClick={() => show(date)}>Show this month</button>
-        )}
-      </section>
-    </>
+    <section className="container">
+      <h3>Birthday Remainder</h3>
+      <List people={people} />
+      {shows ? (
+        <button onClick={() => showall()}>Show all</button>
+      ) : (
+        <button onClick={() => show(date)}>Show this month</button>
+      )}
+    </section>
   );
 }
 

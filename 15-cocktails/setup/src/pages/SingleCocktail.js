@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "../components/Loading";
 import { useParams, Link } from "react-router-dom";
-
+import Recomentaions from "../components/Recomentaions";
 export default function SingleCocktail() {
   const { id } = useParams();
   const [loading, setLoading] = React.useState(false);
@@ -44,6 +44,7 @@ export default function SingleCocktail() {
     }
     getCocktail();
   }, [id]);
+
   if (loading) {
     return <Loading />;
   }
@@ -60,34 +61,41 @@ export default function SingleCocktail() {
     } = cocktail;
     const image = `https://image.tmdb.org/t/p/w500/${poster_path}`;
     return (
-      <section className="section cocktail-section">
-        <Link to="/" className="btn btn-primary">
-          back to home
-        </Link>
-        <h2 className="section-title">{title}</h2>
-        <div className="drink">
-          <img src={image} alt={title}></img>
-          <div className="drink-info">
-            <p>
-              <span className="drink-data">title :</span> {title}
-            </p>
-            <p>
-              <span className="drink-data">Ratings :</span> {vote_average} /10
-            </p>
-            <p>
-              <span className="drink-data">Release date :</span> {release_date}
-            </p>
-            <p>
-              <span className="drink-data">Runtime :</span> {runtime} min
-            </p>
+      <>
+        <section className="section cocktail-section">
+          <Link to="/" className="btn btn-primary">
+            back to home
+          </Link>
+          <h2 className="section-title">{title}</h2>
+          <div className="drink">
+            <img src={image} alt={title}></img>
+            <div className="drink-info">
+              <p>
+                <span className="drink-data">title :</span> {title}
+              </p>
+              <p>
+                <span className="drink-data">Ratings :</span> {vote_average} /10
+              </p>
+              <p>
+                <span className="drink-data">Release date :</span>{" "}
+                {release_date}
+              </p>
+              <p>
+                <span className="drink-data">Runtime :</span> {runtime} min
+              </p>
 
-            <p>
-              <span className="drink-data">Overview :</span>
-              {overview}
-            </p>
+              <p>
+                <span className="drink-data">Overview :</span>
+                {overview}
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section>
+          <p className="recomendation-title">Recomended Movies :</p>
+          <Recomentaions key={id} id={id} />
+        </section>
+      </>
     );
   }
 }
